@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Todo Task Manager</title>
+    <link rel="stylesheet" type="text/css" href="popup.css"/>
+  </head>
+  <body>
+    <section class="todoapp">
+      <!-- 页头 -->
+      <header class="header">
+        <h1>todos</h1>
+        <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" @keyup.enter="addTodo"/>
+      </header>
+      <!-- 内容 -->
+      <section class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox"/>
+        <label for="toggle-all"></label>
+        <!-- Todo列表 -->
+        <ul class="todo-list">
+          <li class="todo">
+            <div class="view">
+              <input class="toggle" type="checkbox"/>
+              <label @dblclick="editTodo(todo)">This will be done today</label>
+              <button class="destroy" @click="removeTodo(todo)"></button>
+            </div>
+            <input class="edit" type="text" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)"/>
+          </li>
+        </ul>
+      </section>
+      <!-- 列表底部 -->
+      <footer class="footer">
+        <span class="todo-count">
+          <strong>0</strong> left
+        </span>
+        <!-- 列表过滤器 -->
+        <ul class="filters">
+          <li>
+            <a href="#/all">All</a>
+          </li>
+          <li>
+            <a href="#/active">Active</a>
+          </li>
+          <li>
+            <a href="#/completed">Completed</a>
+          </li>
+        </ul>
+        <button class="clear-completed">Clear completed</button>
+      </footer>
+    </section>
+    <!-- 页脚 -->
+    <footer class="info">
+      <p>Double-click to edit a todo</p>
+      <p>Written by <a href="https://github.com/codeboyzhou/todos">codeboyzhou</a></p>
+      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+  </body>
+</html>
