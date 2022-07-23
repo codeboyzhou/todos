@@ -1,44 +1,24 @@
 <template>
-  <section class="main">
-    <input
-      class="new-todo"
-      autofocus
-      autocomplete="off"
-      placeholder="What needs to be done?"
-      @keyup.enter="addTodo"
-    />
-    <!-- 是否全选 -->
-    <input
-      id="toggle-all"
-      class="toggle-all"
-      type="checkbox"
-    />
+  <!-- 主输入框 -->
+  <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model.trim="newTodo" @keyup.enter="addTodo" />
+  <!-- 列表和操作区 -->
+  <section class="main" v-show="todos.length">
+    <!-- 一键全选 -->
+    <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
     <label for="toggle-all"></label>
     <!-- Todo列表 -->
     <ul class="todo-list">
-      <li class="todo">
+      <li class="todo" v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed, editing: todo == editedTodo }">
         <div class="view">
-          <input
-            class="toggle"
-            type="checkbox"
-          />
-          <label @dblclick="editTodo(todo)">This will be done today</label>
-          <button
-            class="destroy"
-            @click="removeTodo(todo)"
-          ></button>
+          <input class="toggle" type="checkbox" />
+          <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+          <button class="destroy" @click="removeTodo(todo)"></button>
         </div>
-        <input
-          class="edit"
-          type="text"
-          @blur="doneEdit(todo)"
-          @keyup.enter="doneEdit(todo)"
-          @keyup.esc="cancelEdit(todo)"
-        />
+        <input class="edit" type="text" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" />
       </li>
     </ul>
   </section>
-  <footer class="footer">
+  <footer class="footer" v-show="todos.length">
     <span class="todo-count">
       <strong>0</strong> left
     </span>
@@ -60,7 +40,34 @@
 
 <script>
 export default {
-  name: 'TodoList'
+  name: 'TodoList',
+
+  data() {
+    return {
+      todos: [],
+      newTodo: null
+    }
+  },
+
+  methods: {
+    addTodo() {
+      if (!this.newTodo) {
+        return;
+      }
+
+      this.todos.push({
+        id: Date.now(),
+        completed: false,
+        title: this.newTodo
+      });
+
+      this.newTodo = null;
+    },
+
+    removeTodo(todo) {
+      this.todos.splice(this.todos.indexOf(todo), 1);
+    }
+  }
 }
 </script>
 

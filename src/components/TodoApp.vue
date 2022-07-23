@@ -1,5 +1,5 @@
 <template>
-  <section class="todoapp">
+  <section class="todo-app">
     <header class="header">
       <h1>todos</h1>
     </header>
@@ -66,7 +66,7 @@ button {
   display: none;
 }
 
-.todoapp {
+.todo-app {
   background: #fff;
   margin: 130px 0 40px 0;
   position: relative;
