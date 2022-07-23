@@ -1,25 +1,24 @@
 <template>
   <section class="todoapp">
-    <TodoHeader></TodoHeader>
+    <header class="header">
+      <h1>todos</h1>
+    </header>
     <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
   </section>
-  <PageFooter></PageFooter>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="https://github.com/codeboyzhou/todos">codeboyzhou</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader.vue'
-import TodoList from './components/TodoList.vue'
-import TodoFooter from './components/TodoFooter.vue'
-import PageFooter from './components/PageFooter.vue'
+import TodoList from './TodoList.vue'
 
 export default {
-  name: 'App',
+  name: 'TodoApp',
   components: {
-    TodoHeader,
-    TodoList,
-    TodoFooter,
-    PageFooter
+    TodoList
   }
 }
 </script>
@@ -102,6 +101,28 @@ button {
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;
+  }
+}
+
+.info {
+  margin: 65px auto 0;
+  color: #bfbfbf;
+  font-size: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-align: center;
+
+  p {
+    line-height: 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

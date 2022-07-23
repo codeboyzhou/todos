@@ -1,4 +1,10 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+  transpileDependencies: true,
+  pages: {
+    index: {
+      entry: 'src/app.js',
+      template: 'public/popup.html'
+    }
+  }
 })
