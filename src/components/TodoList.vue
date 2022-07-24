@@ -55,6 +55,11 @@ export default {
         return;
       }
 
+      const alreadyExists = this.todos.filter(todo => todo.title === this.newTodo);
+      if (alreadyExists.length > 0) {
+        return;
+      }
+
       this.todos.push({
         id: Date.now(),
         completed: false,
